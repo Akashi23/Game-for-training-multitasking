@@ -1,5 +1,6 @@
 var player;
 var walls = [];
+var speed = 4;
 
 function startGame(){
     player = new component(30, 30, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-30);
@@ -76,22 +77,21 @@ function updateGameArea(){
   }
     myGameArea.clear();
     myGameArea.frameNo += 1;
-    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+    if (myGameArea.frameNo == 1 || everyinterval(30)) {
         x = myGameArea.canvas.width;
         y = 0;
-        minWidth = 20;
-        maxWidth = myGameArea.canvas.width;
-        width = Math.floor(Math.random()*(maxWidth-minWidth+1)+minWidth);
-        minGap = 50;
-        maxGap = 200;
-        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        walls.push(new component(width, 10, "green", 0, y));
-        walls.push(new component(y + width - gap, 10, "green", width + gap, y));
-      }
-    for (i = 0; i < walls.length; i += 1) {
-      walls[i].y += 1;
-      walls[i].update();
+        width = myGameArea.canvas.width/3;
+        x = width * Math.floor(Math.floor(Math.random()*10)/3);
+        walls.push(new component(width, 10, "green", x, y));
     }
+    for (i = 0; i < walls.length; i += 1) {
+        walls[i].y += speed;
+        walls[i].update();
+        if(speed < 10){
+            speed += 0.0001;
+        }
+    }
+
     player.speedX = 0;
     if (myGameArea.key && myGameArea.key == 37) {player.speedX = -12; }
     if (myGameArea.key && myGameArea.key == 39) {player.speedX = 12; }
