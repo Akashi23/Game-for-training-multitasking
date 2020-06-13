@@ -4,8 +4,8 @@ var walls = [];
 var speed = 4;
 var myScore;
 
-function startGame1(){
-    player = new component(playerSize, playerSize, "red", myGameArea.canvas.width/2, 2*myGameArea.canvas.height-playerSize);
+function startGame2(){
+    player = new component(playerSize, playerSize, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-30);
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start(); 
 }
@@ -20,15 +20,11 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;          
-        window.addEventListener('keydown', function (e) {
-            myGameArea.key = e.keyCode;
-        })
-        window.addEventListener('keyup', function (e) {
-            myGameArea.key = false;
-        })
         this.interval = setInterval(updateGameArea, 20);
-
-             
+        window.addEventListener('mousemove', function (e) {
+                    myGameArea.x = e.pageX;
+                    myGameArea.y = e.pageY;
+        })
     },
     clear: function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -83,18 +79,19 @@ function component(width, height, color, x, y, type){
 
 function updateGameArea(){
     var x, y;
-  for (i = 0; i < walls.length; i += 1) {
-    if (player.crashWith(walls[i])) {
-      myGameArea.stop();
-      return;
+    for (i = 0; i < walls.length; i += 1) {
+        if (player.crashWith(walls[i])) {
+            myGameArea.stop();
+            return;
+        }
     }
-  }
     myGameArea.clear();
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(30)) {
+        x = myGameArea.canvas.width;
         y = 0;
-        width = myGameArea.canvas.width/4;
-        x = width * Math.round(Math.round(Math.random()*10)/4);
+        width = myGameArea.canvas.width/3;
+        x = width * Math.round(Math.round(Math.random()*10)/3);
         walls.push(new component(width, 10, "green", x, y));
     }
     for (i = 0; i < walls.length; i += 1) {
@@ -106,8 +103,10 @@ function updateGameArea(){
     }
 
     player.speedX = 0;
-    if (myGameArea.key && myGameArea.key == 37) {player.speedX = -12; }
-    if (myGameArea.key && myGameArea.key == 39) {player.speedX = 12; }
+    if (myGameArea.x && myGameArea.y) {
+        player.x = myGameArea.x;
+        player.y = myGameArea.y;
+    }
     myScore.text = "SCORE: " + myGameArea.frameNo;
     myScore.update();
     player.newPos();
