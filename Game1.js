@@ -5,20 +5,19 @@ var speed = 4;
 var myScore;
 
 function startGame1(){
-    player = new component(playerSize, playerSize, "red", myGameArea.canvas.width/2, 2*myGameArea.canvas.height-playerSize);
+    player = new component(playerSize, playerSize, "red", myGameArea.canvas.width, myGameArea.canvas.height);
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start(); 
 }
 
 
 var myGameArea = {
-    canvas : document.createElement("canvas"),
+    canvas : document.getElementById("game1"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 320;
+        this.canvas.width = window.innerWidth/2;
+        this.canvas.height = window.innerHeight;
         this.canvas.style.cursor = "none";
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;          
         window.addEventListener('keydown', function (e) {
             myGameArea.key = e.keyCode;
@@ -26,9 +25,7 @@ var myGameArea = {
         window.addEventListener('keyup', function (e) {
             myGameArea.key = false;
         })
-        this.interval = setInterval(updateGameArea, 20);
-
-             
+        this.interval = setInterval(updateGameArea, 20); 
     },
     clear: function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -93,8 +90,8 @@ function updateGameArea(){
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(30)) {
         y = 0;
-        width = myGameArea.canvas.width/4;
-        x = width * Math.round(Math.round(Math.random()*10)/4);
+        width = Math.floor(myGameArea.canvas.width/3);
+        x = width * Math.floor(Math.floor(Math.random()*10)/3.5);
         walls.push(new component(width, 10, "green", x, y));
     }
     for (i = 0; i < walls.length; i += 1) {

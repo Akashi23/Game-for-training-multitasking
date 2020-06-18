@@ -4,17 +4,25 @@
     <meta charset="utf-8" />
     <title>Gamedev Canvas Workshop</title>
     <style>
-    	canvas { background: #eee; display: block;}
+    	canvas { background: #eee; display: inline;}
+        .contaier{display: inline-block;}
     </style>
 </head>
 <body>
-<div>
-    <script src="Game1.js"></script>
-    <!--<script src="Game2.js"></script>-->
-    <script>startGame1()</script>
-    <!--<script>startGame2()</script>-->
+    <div class="container">
+        <canvas id="game1" style="z-index:0;"></canvas>
+        <canvas id="game2" style="z-index:1;"></canvas>
+    </div>
+    <div class="container">
+        
+    </div>
+    <div>
+        <script src="Game1.js"></script>
+        <script src="Game2.js"></script>
+        <script>startGame2()</script>
+        <script>startGame1()</script>
 
-</div>
+    </div>
 
 
 </body>

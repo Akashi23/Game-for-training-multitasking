@@ -12,13 +12,12 @@ function startGame2(){
 
 
 var myGameArea = {
-    canvas : document.createElement("canvas"),
+    canvas : document.getElementById("game2"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 320;
+        this.canvas.width = window.innerWidth/2;
+        this.canvas.height = window.innerHeight;
         this.canvas.style.cursor = "none";
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;          
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('mousemove', function (e) {
@@ -90,8 +89,8 @@ function updateGameArea(){
     if (myGameArea.frameNo == 1 || everyinterval(30)) {
         x = myGameArea.canvas.width;
         y = 0;
-        width = myGameArea.canvas.width/3;
-        x = width * Math.round(Math.round(Math.random()*10)/3);
+        width = myGameArea.canvas.width/4;
+        x = width * Math.round(Math.round(Math.random()*10)/4);
         walls.push(new component(width, 10, "green", x, y));
     }
     for (i = 0; i < walls.length; i += 1) {
