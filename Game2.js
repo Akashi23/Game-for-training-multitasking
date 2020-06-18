@@ -1,12 +1,12 @@
-var player;
-var playerSize = 30;
-var walls = [];
-var speed = 4;
-var myScore;
+var player2;
+var playerSize2 = 30;
+var walls2 = [];
+var speed2 = 4;
+var myScore2;
 
 function startGame2(){
-    player = new component(playerSize, playerSize, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-30);
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    player2 = new component(playerSize2, playerSize2, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-30);
+    myScore2 = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start(); 
 }
 
@@ -14,12 +14,12 @@ function startGame2(){
 var myGameArea = {
     canvas : document.getElementById("game2"),
     start : function() {
-        this.canvas.width = window.innerWidth/2;
+        this.canvas.width = window.innerWidth/2.07;
         this.canvas.height = window.innerHeight;
         this.canvas.style.cursor = "none";
         this.context = this.canvas.getContext("2d");
         this.frameNo = 0;          
-        this.interval = setInterval(updateGameArea, 20);
+        this.interval = interval
         window.addEventListener('mousemove', function (e) {
                     myGameArea.x = e.pageX;
                     myGameArea.y = e.pageY;
@@ -29,7 +29,8 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
-        clearInterval(this.interval);
+        clearInterval(interval);
+        return true;
     }
 }
 
@@ -78,8 +79,8 @@ function component(width, height, color, x, y, type){
 
 function updateGameArea(){
     var x, y;
-    for (i = 0; i < walls.length; i += 1) {
-        if (player.crashWith(walls[i])) {
+    for (i = 0; i < walls2.length; i += 1) {
+        if (player2.crashWith(walls2[i])) {
             myGameArea.stop();
             return;
         }
@@ -91,25 +92,25 @@ function updateGameArea(){
         y = 0;
         width = myGameArea.canvas.width/4;
         x = width * Math.round(Math.round(Math.random()*10)/4);
-        walls.push(new component(width, 10, "green", x, y));
+        walls2.push(new component(width, 10, "green", x, y));
     }
-    for (i = 0; i < walls.length; i += 1) {
-        walls[i].y += speed;
-        walls[i].update();
-        if(speed < 10){
-            speed += 0.0001;
+    for (i = 0; i < walls2.length; i += 1) {
+        walls2[i].y += speed2;
+        walls2[i].update();
+        if(speed2 < 10){
+            speed2 += 0.0001;
         }
     }
 
-    player.speedX = 0;
+    player2.speedX = 0;
     if (myGameArea.x && myGameArea.y) {
-        player.x = myGameArea.x;
-        player.y = myGameArea.y;
+        player2.x = myGameArea.x;
+        player2.y = myGameArea.y;
     }
-    myScore.text = "SCORE: " + myGameArea.frameNo;
-    myScore.update();
-    player.newPos();
-    player.update();
+    myScore2.text = "SCORE: " + myGameArea.frameNo;
+    myScore2.update();
+    player2.newPos();
+    player2.update();
 }
 
 function everyinterval(n) {
