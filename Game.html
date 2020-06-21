@@ -3,26 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <title>Gamedev Canvas Workshop</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <style>
-    	canvas { background: #eee; display: inline-block;}
-        .container{display: inline-block; margin-left: auto;}
+        canvas { background: #eee; display: inline-block;}
     </style>
 </head>
 <body>
     <div class="container">
-        <canvas id="game2" style="z-index:0;"></canvas>
-    </div>
-    <div class="container">
-        <canvas id="game1" style="z-index:1;"></canvas>
+        <div class="row">
+            <div class="col card bg-light mb-3">
+                <canvas id="game2" style="z-index:0;"></canvas>
+            </div>
+            <div class="col card bg-light mb-3">
+                <canvas id="game1" style="z-index:1;"></canvas>
+            </div>
     </div>
     <div>
-        <script src="ui.js"></script>
-        <script src="Game2.js"></script>
-        <script src="Game1.js"></script>
-        
+        <script src="../Games with Canvas/game/Game1.js"></script>
+        <script src="../Games with Canvas/game/Game2.js"></script>
         <script>
             var interval;
-            var start = false;
+            var start = true;
 
             function update(){
                 updateArea();
@@ -36,7 +37,6 @@
                 startGame();
                 interval = setInterval(update, 20);
             }
-            
             
         </script>
     </div>
