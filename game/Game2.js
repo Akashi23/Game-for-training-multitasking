@@ -5,7 +5,7 @@ var speed2 = 4;
 var myScore2;
 
 function startGame2(){
-    player2 = new component(playerSize2, playerSize2, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-30);
+    player2 = new component(playerSize2, playerSize2, "red", myGameArea.canvas.width/2, myGameArea.canvas.height-playerSize);
     myScore2 = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start(); 
 }
@@ -15,14 +15,18 @@ var myGameArea = {
     canvas : document.getElementById("game2"),
     start : function() {
         this.canvas.width = window.innerWidth/2.07;
-        this.canvas.height = window.innerHeight;
+        this.canvas.height = window.innerHeight/1.3;
         this.canvas.style.cursor = "none";
         this.context = this.canvas.getContext("2d");
         this.frameNo = 0;          
         this.interval = interval
         window.addEventListener('mousemove', function (e) {
+                if((e.pageX >  window.innerWidth/2 - myGameArea.canvas.width && e.pageX < window.innerWidth/2)&&
+                (e.pageY < window.innerHeight/1.2 && e.pageY > 30) )
+                {
                     myGameArea.x = e.pageX;
                     myGameArea.y = e.pageY;
+                }   
         })
     },
     clear: function(){
@@ -112,7 +116,7 @@ function updateGameArea(){
             
         }
     }
-    myScore2.text = "SCORE: " + (myGameArea.frameNo * 50)/1000;
+    myScore2.text = "SCORE: " + Math.floor((myGameArea.frameNo * 50)/1000);
     myScore2.update();
     player2.newPos();
     player2.update();

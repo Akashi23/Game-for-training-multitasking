@@ -9,34 +9,53 @@
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="../Games with Canvas/index.html">Home</a>
+        <a class="navbar-brand" href="../Games with Canvas/index.html">ScoreBoard</a>
+      </nav>
     <div class="container">
         <div class="row">
             <div class="col card bg-light mb-3">
+                <div class="card-header">Mouse</div>
                 <canvas id="game2" style="z-index:0;"></canvas>
             </div>
             <div class="col card bg-light mb-3">
+                <div class="card-header">Keyboard <-- --></div>
                 <canvas id="game1" style="z-index:1;"></canvas>
             </div>
     </div>
     <div>
+        <script src="../Games with Canvas/ui.js"></script>
         <script src="../Games with Canvas/game/Game1.js"></script>
         <script src="../Games with Canvas/game/Game2.js"></script>
         <script>
             var interval;
-            var start = true;
-
+            startUI();
             function update(){
-                updateArea();
-                updateGameArea();
+                if(!paused)
+                { 
+                    updateArea();
+                    updateGameArea();
+                }  
             }
             function startGame(){
                 startGame1();
                 startGame2();
             }
-            if(start){
-                startGame();
-                interval = setInterval(update, 20);
-            }
+            window.addEventListener('keydown', function (e) {
+                var key = e.keyCode;
+                if (key === 80)// p key
+                {
+                    togglePause();
+                }
+                else if (key === 32)
+                {
+                    startGame();
+                }
+            });
+
+            interval = setInterval(update, 20);
+          
             
         </script>
     </div>

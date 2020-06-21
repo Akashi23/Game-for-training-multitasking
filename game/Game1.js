@@ -5,7 +5,7 @@ var speed = 4;
 var myScore;
 
 function startGame1(){
-    player = new component_game1(playerSize, playerSize, "red", area.canvas.width, window.innerHeight - playerSize);
+    player = new component_game1(playerSize, playerSize, "red", area.canvas.width/2, window.innerHeight/1.3 - playerSize);
     myScore = new component_game1("30px", "Consolas", "black", 280, 40, "text");
     area.start(); 
 }
@@ -14,7 +14,7 @@ var area = {
     canvas : document.getElementById("game1"),
     start : function() {
         this.canvas.width = window.innerWidth/2.07;
-        this.canvas.height = window.innerHeight;
+        this.canvas.height = window.innerHeight/1.3;
         this.canvas.style.cursor = "none";
         this.context = this.canvas.getContext("2d");
         this.frameNo = 0;          
@@ -120,7 +120,7 @@ function updateArea(){
         } 
     }
 
-    myScore.text = "SCORE: " + (area.frameNo * 50)/1000;
+    myScore.text = "SCORE: " +  Math.floor((area.frameNo * 50)/1000);
     myScore.update();
     player.newPos();
     player.update();
