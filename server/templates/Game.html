@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <style>
+        canvas { background: #eee; display: inline-block;}
+        .center {
+            margin: auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/ScoreBoard">ScoreBoard</a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col card bg-light mb-3">
+                <div class="card-header">Mouse</div>
+                <canvas id="game2" style="z-index:0;"></canvas>
+            </div>
+            <div class="col card bg-light mb-3">
+                <div class="card-header">Keyboard <-- --></div>
+                <canvas id="game1" style="z-index:1;"></canvas>
+            </div>
+    </div>
+    <div>
+        <script src="static/game/ui.js"></script>
+        <script src="static/game/Game1.js"></script>
+        <script src="static/game/Game2.js"></script>
+        <script>
+            var interval;
+            var enable = true;
+            startUI();
+            function update(){
+                if(!paused)
+                { 
+                    updateArea();
+                    updateGameArea();
+                }  
+            }
+            function startGame(enable){
+                if(enable){
+                    startGame1();
+                    startGame2();
+                }
+            }
+            window.addEventListener('keydown', function (e) {
+                var key = e.keyCode;
+                if (key === 80)
+                {
+                    togglePause();
+                }
+                else if (key === 32)
+                {
+                    startGame(enable);
+                    enable = false;
+                }
+                if (key === 82)
+                {
+                    location.reload();
+                }
+            });
+
+            interval = setInterval(update, 20);
+          
+            
+        </script>
+    </div>
+</body>
+</html>
