@@ -104,10 +104,15 @@ function updateGameArea(){
 
     player2.speedX = 0;
     if (myGameArea.x && myGameArea.y) {
-        player2.x = myGameArea.x;
-        player2.y = myGameArea.y;
+        if (myGameArea.x < myGameArea.canvas.width && myGameArea.y < myGameArea.canvas.height) {
+            player2.x = myGameArea.x;
+            player2.y = myGameArea.y;
+        }
+        else{
+            
+        }
     }
-    myScore2.text = "SCORE: " + myGameArea.frameNo;
+    myScore2.text = "SCORE: " + (myGameArea.frameNo * 50)/1000;
     myScore2.update();
     player2.newPos();
     player2.update();

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+    	canvas { background: #eee; display: inline-block;}
+        .container{display: inline-block; margin-left: auto;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="game2" style="z-index:0;"></canvas>
+    </div>
+    <div class="container">
+        <canvas id="game1" style="z-index:1;"></canvas>
+    </div>
+    <div>
+        <script src="ui.js"></script>
+        <script src="Game2.js"></script>
+        <script src="Game1.js"></script>
+        
+        <script>
+            var interval;
+            var start = false;
+
+            function update(){
+                updateArea();
+                updateGameArea();
+            }
+            function startGame(){
+                startGame1();
+                startGame2();
+            }
+            if(start){
+                startGame();
+                interval = setInterval(update, 20);
+            }
+            
+            
+        </script>
+    </div>
+</body>
+</html>
