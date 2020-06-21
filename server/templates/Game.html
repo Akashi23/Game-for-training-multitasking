@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Game</title>
     <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <script src="static/js/jquery-3.5.1.min.js"></script>
     <style>
         canvas { background: #eee; display: inline-block;}
         .center {
@@ -17,11 +18,12 @@
         <a class="navbar-brand" href="/">Home</a>
         <a class="navbar-brand" href="/ScoreBoard">ScoreBoard</a>
     </nav>
+    
     <div class="container">
         <div class="row">
             <div class="col card bg-light mb-3">
                 <div class="card-header">Mouse</div>
-                <canvas id="game2" style="z-index:0;"></canvas>
+                <canvas id="game2" style="z-index:1;"></canvas>
             </div>
             <div class="col card bg-light mb-3">
                 <div class="card-header">Keyboard <-- --></div>
@@ -34,13 +36,19 @@
         <script src="static/game/Game2.js"></script>
         <script>
             var interval;
+
             var enable = true;
             startUI();
+
             function update(){
                 if(!paused)
                 { 
                     updateArea();
                     updateGameArea();
+                    if(flag){
+                        $(".container").remove();
+                        appendCard();
+                    }
                 }  
             }
             function startGame(enable){
@@ -58,6 +66,9 @@
                 else if (key === 32)
                 {
                     startGame(enable);
+                    if(enable){
+                        interval = setInterval(update, 20);
+                    }
                     enable = false;
                 }
                 if (key === 82)
@@ -66,9 +77,6 @@
                 }
             });
 
-            interval = setInterval(update, 20);
-          
-            
         </script>
     </div>
 </body>

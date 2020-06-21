@@ -34,6 +34,7 @@ var myGameArea = {
     },
     stop : function() {
         clearInterval(interval);
+        flag = true;
         return true;
     }
 }

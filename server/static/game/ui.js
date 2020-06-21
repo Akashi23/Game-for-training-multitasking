@@ -22,12 +22,22 @@ function startUI(){
 
 function togglePause()
 {
-    if (!paused)
+    if (paused)
     {
         paused = true;
-    } else if (paused)
+    } else if (!paused)
     {
        paused= false;
     }
 
 }
+
+function appendCard() {
+    var txt1 = "<div class='container center card'><form action='/ScoreBoard'>\
+    <label for='fname'>Nickname:</label>\
+    <input type='text' id='lname' name='lname'><br><br>\
+    <input type='submit' value='Submit'>\
+  </form></div>";               
+    $("body").append(txt1);    
+  }
+  
