@@ -3,7 +3,8 @@ var playerSize = 30;
 var walls = [];
 var speed = 4;
 var myScore;
-var flag = true;
+var score = 0;
+var flag = false;
 
 function startGame1(){
     player = new component_game1(playerSize, playerSize, "red", area.canvas.width/2, window.innerHeight/1.3 - playerSize);
@@ -121,8 +122,8 @@ function updateArea(){
             player.speedX = 0;
         } 
     }
-
-    myScore.text = "SCORE: " + Math.round((area.frameNo * 50)/1000);
+    score = Math.round((area.frameNo * 50)/1000);
+    myScore.text = "SCORE: " + score;
     myScore.update();
     player.newPos();
     player.update();

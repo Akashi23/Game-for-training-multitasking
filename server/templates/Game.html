@@ -18,7 +18,21 @@
         <a class="navbar-brand" href="/">Home</a>
         <a class="navbar-brand" href="/ScoreBoard">ScoreBoard</a>
     </nav>
-    
+    <div class="hide" >
+    <div class='container'>
+        <form action='/ScoreBoard' method='POST'>
+        <div class='input-group mb-3'>
+            <input type='text' class='form-control' id='nickname' name='nickname' placeholder='Nickname:' aria-label='Nickname:' aria-describedby='basic-addon2'>
+            <div class="input-group-append">
+                <input type="text" class="form-control input-group-text" aria-label="Score" id="score" name="score" readonly="readonly">
+            </div>
+            <div class='input-group-append'>
+              <button class='btn btn-outline-secondary mb-3' type='submit'>Button</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col card bg-light mb-3">
@@ -35,9 +49,10 @@
         <script src="static/game/Game1.js"></script>
         <script src="static/game/Game2.js"></script>
         <script>
-            var interval;
 
+            var interval;
             var enable = true;
+            $('.hide').hide();
             startUI();
 
             function update(){
@@ -45,9 +60,11 @@
                 { 
                     updateArea();
                     updateGameArea();
+                    $("#score").val(score);
                     if(flag){
-                        $(".container").remove();
-                        appendCard();
+                        $(".row").remove();
+                        $(".hide").show();
+                        paused =! paused; 
                     }
                 }  
             }

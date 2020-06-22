@@ -14,16 +14,27 @@ def home():
     return render_template(
         'index.html',
 
-        )
+    )
 
 @app.route('/Game')
 def Game():
     return render_template(
         'Game.html'
-        )
+    )
 
-@app.route('/ScoreBoard')
+
+@app.route('/ScoreBoard', methods=["GET", "POST"])
 def ScoreBoard():
+
+    if request.method == "POST":
+
+        req = request.form
+        data = req.to_dict()
+        
+
+        return redirect(request.url)
+
+
     return render_template(
         'ScoreBoard.html'
         )
