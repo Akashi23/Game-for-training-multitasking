@@ -34,9 +34,17 @@
                     <td>Akashi23</td>
                     <td>999999</td>
                 </tr>
+                {% for index, row in df.iterrows() %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{row['nickname']}}</td>
+                    <td>{{row['score']}}</td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
+        
         
     </div>
     

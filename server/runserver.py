@@ -3,10 +3,11 @@ from flask import render_template
 from flask import request, redirect
 from flask import Response
 from flask import send_from_directory
+import json
 import os
-
-
+import pandas as pd
 app = Flask(__name__)
+gamers = 0
 
 @app.route('/')
 def home():
@@ -25,19 +26,53 @@ def Game():
 
 @app.route('/ScoreBoard', methods=["GET", "POST"])
 def ScoreBoard():
+    data = {}
+    data['score'] = []
 
+    with open('data.json', 'r') as json_file:
+        data = json.load(json_file)
+    
     if request.method == "POST":
 
         req = request.form
-        data = req.to_dict()
+        nickscore = req.to_dict()
         
+        data['score'].append(nickscore)
+        with open('data.json', 'w') as outfile:
+            json.dump(data, outfile)
 
+        
         return redirect(request.url)
 
+    for p in data['score']:
+            print('Nickname: ' + p['nickname'])
+            print('Score: ' + p['score'])
+
+
+    df = to_dataframe(data)
+    dt = df.sort_values(by=['score'], ascending=False)
+    print(dt)
 
     return render_template(
-        'ScoreBoard.html'
+        'ScoreBoard.html',
+        data=data,
+        df=dt
         )
+
+
+def to_dataframe(data):
+    df = {}
+    df['nickname'] = []
+    df['score'] = []
+    
+    for p in data['score']:
+        df['nickname'].append(p['nickname'])
+        df['score'].append(int(p['score']))
+
+    return pd.DataFrame(df)
+    
+
+    
 
 
 if __name__ == "__main__":
