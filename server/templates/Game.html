@@ -49,10 +49,10 @@
         <script src="static/game/Game1.js"></script>
         <script src="static/game/Game2.js"></script>
         <script>
-
+            // it is my decision work through html file to seeing how it works
             var interval;
             var enable = true;
-            $('.hide').hide();
+            $('.hide').hide(); // i dont have any idea how to create card above area and then i just hide it
             startUI();
 
             function update(){
@@ -61,7 +61,7 @@
                     updateArea();
                     updateGameArea();
                     $("#score").val(score);
-                    if(flag){
+                    if(flag){                // i know it is awful statement 
                         $(".row").remove();
                         $(".hide").show();
                         paused =! paused; 

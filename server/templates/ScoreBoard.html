@@ -17,6 +17,7 @@
         <a class="navbar-brand" href="/">Home</a>
         <a class="navbar-brand" href="/ScoreBoard">ScoreBoard</a>
     </nav>
+    <!--Scoreboard with table and flask code-->
     <div class="container center">
         <div class="card border-dark mb-3" style="max-width: 60rem;">
             <div class="card-header">Header</div>
@@ -34,6 +35,9 @@
                     <td>Akashi23</td>
                     <td>999999</td>
                 </tr>
+                <!--flask code with jinja2 
+                    using pandas dataframes and 
+                    represent with <tr><td> tags-->
                 {% for index, row in df.iterrows() %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>

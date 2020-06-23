@@ -33,7 +33,7 @@ var area = {
     },
     stop : function() {
         clearInterval(interval);
-        flag = true;
+        flag = true; // this flag in game.html if game stopped then show nickname adding
         return true;
     },
 }
@@ -90,7 +90,7 @@ function updateArea(){
     }
   }
     area.clear();
-    area.frameNo += 1;
+    area.frameNo += 1;                         
     if (area.frameNo == 1 || everyinterval(30)) {
         y = 0;
         width = Math.floor(area.canvas.width/3);
@@ -100,7 +100,7 @@ function updateArea(){
     for (i = 0; i < walls.length; i += 1) {
         walls[i].y += speed;
         walls[i].update();
-        if(speed < 10){
+        if(speed < 10){            //Awful moment how i can created this
             speed += 0.0001;
         }
     }

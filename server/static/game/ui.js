@@ -1,3 +1,4 @@
+//global because paused should work another part of application
 var paused = false;
 
 function startUI(){

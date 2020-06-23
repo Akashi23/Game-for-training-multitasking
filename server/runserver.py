@@ -7,14 +7,14 @@ import json
 import os
 import pandas as pd
 app = Flask(__name__)
-gamers = 0
+gamers = 0       # I know those are awful 
+                # I know about OOP 
 
 @app.route('/')
 def home():
 
     return render_template(
         'index.html',
-
     )
 
 @app.route('/Game')
@@ -41,17 +41,11 @@ def ScoreBoard():
         with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
 
-        
         return redirect(request.url)
-
-    for p in data['score']:
-            print('Nickname: ' + p['nickname'])
-            print('Score: ' + p['score'])
 
 
     df = to_dataframe(data)
     dt = df.sort_values(by=['score'], ascending=False)
-    print(dt)
 
     return render_template(
         'ScoreBoard.html',

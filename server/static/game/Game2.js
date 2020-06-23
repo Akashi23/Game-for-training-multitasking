@@ -1,5 +1,5 @@
-var player2;
-var playerSize2 = 30;
+var player2;               // I know about code cleaning and those are awful variables' name 
+var playerSize2 = 30;       // I just copied Game1.js
 var walls2 = [];
 var speed2 = 4;
 var myScore2;
@@ -102,7 +102,7 @@ function updateGameArea(){
     for (i = 0; i < walls2.length; i += 1) {
         walls2[i].y += speed2;
         walls2[i].update();
-        if(speed2 < 10){
+        if(speed2 < 10){              // Awful statement maybe
             speed2 += 0.0001;
         }
     }
