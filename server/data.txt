@@ -1,1 +1,0 @@
-{"score": [{"nickname": "Scott", "score": "15"}]}
